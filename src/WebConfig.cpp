@@ -203,24 +203,8 @@ void WebConfig::addDescription(String parameter)
     }
   }
 
-#if defined(WiFi_h)
-  _apName = WiFi.macAddress();
-#endif
-#if defined(ETH_h)
-  _apName = ETH.macAddress();
-#endif
-#if defined(Ethernet_h)
-  byte mac[6];
-  Ethernet.macAddress(mac);
-  _apName = String(mac[0], HEX) + ":" +
-            String(mac[1], HEX) + ":" +
-            String(mac[2], HEX) + ":" +
-            String(mac[3], HEX) + ":" +
-            String(mac[4], HEX) + ":" +
-            String(mac[5], HEX);
-#endif
+  _apName = __BASE_FILE__;
 
-  _apName.replace(":", "");
   if (!SPIFFS.begin())
   {
     SPIFFS.format();
@@ -403,7 +387,7 @@ void WebConfig::handleFormRequest(ESP8266WebServer *server, const char *filename
     server->send(200, "text/html", _buf);
     if (_buttons == BTN_CONFIG)
     {
-      createSimple(_buf, "apName", "Name des Accesspoints", "text", _apName);
+      createSimple(_buf, "apName", "Device Name", "text", _apName);
       server->sendContent(_buf);
     }
 
