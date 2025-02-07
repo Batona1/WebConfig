@@ -36,15 +36,15 @@ const char HTML_START[] PROGMEM =
     "<html lang='de'>\n"
     "<head>\n"
     "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n"
-    "<meta name='viewport' content='width=320' />\n"
-    "<title>Konfiguration</title>\n"
+    "<meta name='viewport' content='width=800' />\n"
+    "<title>Configuration</title>\n"
     "<style>\n"
     "body {\n"
     "  background-color:rgb(60, 103, 153);\n"
     "  font-family: Arial, Helvetica, Sans-Serif;\n"
     "  Color: #000000;\n"
     "  font-size:12pt;\n"
-    "  width:320px;\n"
+    "  width:800px;\n"
     "}\n"
     ".titel {\n"
     "font-weight:bold;\n"
@@ -61,11 +61,14 @@ const char HTML_START[] PROGMEM =
     "border-radius:3px;\n"
     "margin:5px;\n"
     "}\n"
+    "input, textarea {\n"
+    "width:700px;\n"
+    "}\n"
     "</style>\n"
     "</head>\n"
     "<body>\n"
     "<div id='main_div' style='margin-left:15px;margin-right:15px;'>\n"
-    "<div class='titel'>Konfiguration %s</div>\n"
+    "<div class='titel'>Configuration %s</div>\n"
     "<form method='post'>\n";
 
 // Template for one input field
@@ -356,7 +359,9 @@ void WebConfig::handleFormRequest(ESP8266WebServer *server, const char *filename
     {
       writeConfig(filename);
       if (server->hasArg(F("RST")))
+      {
         ESP.restart();
+      }
     }
   }
   boolean exit = false;
