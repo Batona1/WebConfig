@@ -717,7 +717,9 @@ float WebConfig::getFloat(const char *name)
 
 boolean WebConfig::getBool(const char *name)
 {
-  return (getString(name) != "0");
+  // return (getString(name) != "0");
+  String value = getString(name);
+  return (value != "0" && value != "false" && value != "FALSE");
 }
 
 // get the accesspoint name
