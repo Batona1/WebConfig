@@ -28,14 +28,14 @@ Dependencies:
 #endif
 
 //maximum number of parameters
-#define MAXVALUES 20
+#define MAXVALUES 40
 
 //maximum number of options per parameters
 #define MAXOPTIONS 15
 
 //character limits
 #define NAMELENGTH 20
-#define LABELLENGTH 40
+#define LABELLENGTH 80
 
 //name for the config file
 #define CONFFILE "/WebConf.conf"
