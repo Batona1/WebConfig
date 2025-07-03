@@ -134,7 +134,7 @@ void WebConfig::addDescription(String parameter)
   DeserializationError error;
   const int capacity = JSON_ARRAY_SIZE(MAXVALUES) + MAXVALUES * JSON_OBJECT_SIZE(8);
   DynamicJsonDocument doc(capacity);
-  char tmp[40];
+  char tmp[60];
   error = deserializeJson(doc, parameter);
   if (error)
   {
@@ -180,7 +180,7 @@ void WebConfig::addDescription(String parameter)
         _description[_count].min = (obj.containsKey("min")) ? obj["min"] : -1000000;
         if (obj.containsKey("default"))
         {
-          strlcpy(tmp, obj["default"], 30);
+          strlcpy(tmp, obj["default"], 60);
           values[_count] = String(tmp);
         }
         else
