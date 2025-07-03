@@ -2,7 +2,7 @@
 --- Fork by KHO ---
 
 File WebConfig.cpp
-Version 1.4.2
+Version 1.5.2
 Author Gerald Lechner
 contakt lechge@gmail.com
 
