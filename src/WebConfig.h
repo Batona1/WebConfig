@@ -2,7 +2,7 @@
 --- Fork by KHO ---
 
 File WebConfig.h
-Version 1.5
+Version 1.6
 Author Gerald Lechner
 contakt lechge@gmail.com
 
