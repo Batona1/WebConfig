@@ -1,11 +1,11 @@
 /*
 --- Fork by KHO ---
-ArduinoJson v7 compatible (jsonDocument def changed)
+
+ArduinoJson v7 compatible. 
+JsonDocument and containsKey was changed according to https://arduinojson.org/v7/how-to/upgrade-from-v6/
 
 File WebConfig.cpp
-Version 1.5.2
-Author Gerald Lechner
-contakt lechge@gmail.com
+Version 1.6.0
 
 Description
 This library builds a web page with a smart phone friendly form to edit
@@ -153,11 +153,15 @@ void WebConfig::addDescription(String parameter)
       if (_count < MAXVALUES)
       {
         _description[_count].optionCnt = 0;
-        if (obj.containsKey("name"))
+        // if (obj.containsKey("name"))
+        if (obj["name"])
           strlcpy(_description[_count].name, obj["name"], NAMELENGTH);
-        if (obj.containsKey("label"))
+        // if (obj.containsKey("label"))
+        if (obj["label"])
+
           strlcpy(_description[_count].label, obj["label"], LABELLENGTH);
-        if (obj.containsKey("type"))
+        // if (obj.containsKey("type"))
+        if (obj["type"])
         {
           if (obj["type"].is<const char *>())
           {
@@ -178,9 +182,12 @@ void WebConfig::addDescription(String parameter)
         {
           _description[_count].type = INPUTTEXT;
         }
-        _description[_count].max = (obj.containsKey("max")) ? obj["max"] : 1000000;
-        _description[_count].min = (obj.containsKey("min")) ? obj["min"] : -1000000;
-        if (obj.containsKey("default"))
+        // _description[_count].max = (obj.containsKey("max")) ? obj["max"] : 1000000;
+        // _description[_count].min = (obj.containsKey("min")) ? obj["min"] : -1000000;
+        _description[_count].max = (obj["max"]) ? obj["max"] : 1000000;
+        _description[_count].min = (obj["min"]) ? obj["min"] : -1000000;
+        // if (obj.containsKey("default"))
+        if (obj["default"])
         {
           strlcpy(tmp, obj["default"], 60);
           values[_count] = String(tmp);
@@ -189,7 +196,8 @@ void WebConfig::addDescription(String parameter)
         {
           values[_count] = "0";
         }
-        if (obj.containsKey("options"))
+        // if (obj.containsKey("options"))
+        if (obj["options"])
         {
           JsonArray opt = obj["options"].as<JsonArray>();
           j = 0;
@@ -667,7 +675,7 @@ void WebConfig::setValues(String json)
   {
     for (uint8_t i = 0; i < _count; i++)
     {
-      if (doc.containsKey(_description[i].name))
+      if (doc[_description[i].name])
       {
         switch (_description[i].type)
         {
